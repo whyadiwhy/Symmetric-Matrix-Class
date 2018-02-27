@@ -12,11 +12,11 @@ This repository contains:
 5)README.md (this file) which contains information about this repository and how to compile the program
 
 
+
+
 **_Compiling Instructions:_**
 
-git clone the repository
-
-cd into that folder
+git clone the repository and cd into that folder
 
 1)Using the ``make`` command :
 Open the terminal and type ``make`` , this will create the output file called testcases.
