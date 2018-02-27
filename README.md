@@ -1,20 +1,20 @@
 # Symmetric-Matrix-Class
 This repository contains:
 
-1)A header file that contains the definitions of symmetric matrix class---> SymMat
+  ``1)A header file that contains the definitions of symmetric matrix class---> SymMat
 
-2)testcases.cpp that contains the testcases for using the SymMat class and Eigen library
+  ``2)testcases.cpp that contains the testcases for using the SymMat class and Eigen library
 
-3)Output images of the testcases.cpp on the terminal
+  ``3)Output images of the testcases.cpp on the terminal
 
-4)Makefile to compile the files using make.
+  ``4)Makefile to compile the files using make.
 
-5)README.md (this file) which contains information about this repository and how to compile the program
-
-
+  ``5)README.md (this file) which contains information about this repository and how to compile the program
 
 
-**_Compiling Instructions:_**
+
+
+## **_Compiling Instructions:_**
 
 git clone the repository and cd into that folder
 
