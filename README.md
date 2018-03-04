@@ -26,9 +26,9 @@ then run the command ``./testcases`` , it will execute the file and produce the 
 After that type:- ``./testcases`` to execute the output file and produce the output
 
 
-**How program works:-**
+## **How program works:-**
 
-*The SymMatrix class stores only the lower triangle in a vector in row major order.
+1)*The SymMatrix class stores only the lower triangle in a vector in row major order.
 Then to calculate the position of element in vector, sum of arithmetic series is used, since elements grow by one in the lower triangle.*
 
 2)A C++ program(**calcspace.cpp**) that finds the space saved *(as compared to when the whole matrix is stored instead of just upper or lower triangular elements)* it inputs the order of matrix and size of each element and outputs the space saved.
@@ -55,7 +55,7 @@ _**From practical point of view**: if we create 1000 matrices of size 100x100, w
 
 It is evident that storage optimization becomes more important when we have very large number of data elements and of higher size.
 
-**RESULTS**
+## **RESULTS**
     
                              Space Saved
     N=3,     size=4 bytes -->12 bytes
