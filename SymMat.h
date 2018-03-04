@@ -63,14 +63,31 @@ public:
 	//Prints the matrix 
 	void print();
 
-	//Trace of matrix
-	_Scalar trace();
-
+	/***BASIC ARITHMETIC REDUCTION OPERATIONS*****/
 	//Sum of the elements
 	_Scalar sum();
 
+	//Returns the mean of elements
+	_Scalar mean();
+
+	//Trace of matrix
+	_Scalar trace();
+
+	//Returns the minimum coefficient of the matrix
+	_Scalar minCoeff();
+
+	//Returns the maximum coefficient of the matrix
+	_Scalar maxCoeff();
+
+	/***ADDITIONAL FUNCTIONS***********/
 	//No.of elements stored in the classical packed format
 	int elemstored();
+
+	//Product of the diagonal elements
+	_Scalar diagprod();
+
+	//Transpose function
+	//SymMat transpose();
 
 	//Overloading the funtion call operator
 	_Scalar& operator()(int,int);
@@ -262,6 +279,28 @@ _Scalar SymMat<_Scalar>::trace()
 }
 
 /**********************************************************************************************************
+						PRODUCT OF DIAGONAL ELEMENTS OF THE MATRIX
+***********************************************************************************************************/
+
+//Function to return the product elements of the matrix
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::diagprod()
+{
+
+  //This variable stores the trace of the matrix
+  _Scalar store_diag_prod=1;  
+
+  for(int i=0;i<order;i++)
+  {
+  	store_trace *= mat[index(i,i)];
+  }
+  return store_diag_prod;
+}
+
+
+
+
+/**********************************************************************************************************
 						SUM OF THE ELEMENTS OF MATRIX
 
 Efficiency improvement:-
@@ -279,12 +318,9 @@ _Scalar SymMat<_Scalar>::sum()
 {
 
   //This variable stores the sum of the elements of matrix
-  _Scalar store_sum=0;  
+  _Scalar store_sum=0,store_trace;
 
-  for(int i=0;i<order;i++)
-  {
-  	store_trace += mat[index(i,i)];
-  }
+  store_trace=trace();
 
   for(int i=0;i<mat.size();i++)
   {
@@ -297,8 +333,135 @@ _Scalar SymMat<_Scalar>::sum()
   return store_sum;
 }
 
+/**********************************************************************************************************
+						PRODUCT OF THE ELEMENTS OF MATRIX
+
+Efficiency improvement:-
+
+In a normal matrix, we have to traverse through all the elements to calculate the product,
+However here, the elements in upper triangle except the diagonal elements are same in the lower half, 
+So we have to only calculate the product of upper triangel except the diagonal elements and make it squared 
+and then multiply it by the product of diagonal elements.
+
+***********************************************************************************************************/
+
+//Sum function to return trace of matrix
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::prod()
+{
+
+  //This variable stores the sum of the elements of matrix
+  _Scalar store_prod=1,store_diag_prod;
+
+  store_diag_prod=diagprod();
+
+  for(int i=0;i<mat.size();i++)
+  {
+  	store_prod*=mat[i];
+  }
+  store_prod/=store_diag_prod;
+  store_prod*=store_prod;
+  store_prod*=store_diag_prod;
+
+  return store_diag_prod;
+}
 
 
+
+/**********************************************************************************************************
+						MEAN OF THE ELEMENTS OF MATRIX
+
+Efficiency improvement:-
+
+In a normal matrix, we have to traverse through all the elements to calculate the sum, and then divide by 
+the total number of elements to get the mean.
+
+However, in this class the sum is calculated efficiently using the sum() function and then it is divided by 
+the total number of elements.
+
+Hence overall it is faster to calculate the mean of the matrix.
+
+***********************************************************************************************************/
+
+//Mean function to return the mean of elements of the matrix
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::mean()
+{
+
+  //This variable stores the sum of the elements of matrix
+  _Scalar store_sum,store_mean;  
+
+  store_sum=sum();
+  store_mean=store_sum/(order*order);
+
+  return store_mean;
+}
+
+
+/**********************************************************************************************************
+						MAX COEFFICIENT AMONGST THE ELEMENTS OF MATRIX
+
+Efficiency improvement:-
+
+In a normal matrix, we have to traverse through all the elements to check all the elements.
+
+In this class, we have to traverse through only the elements in the upper triangle. 
+
+This improves the efficiency since the no. of iterations to check the maximum element value are less.
+
+***********************************************************************************************************/
+
+//Function to return the maximum coefficient in the matrix
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::maxCoeff()
+{
+
+  //This variable stores the maximum of the elements of matrix
+  _Scalar store_max=mat[0];  
+
+  for(int i=1;i<mat.size();i++)
+  {
+  	if(mat[i]>store_max)
+  	{
+  		store_max=mat[i];
+  	}
+  }
+
+  return store_max;
+}
+
+
+/**********************************************************************************************************
+						MINIMUM COEFFICIENT AMONGST THE ELEMENTS OF MATRIX
+
+Efficiency improvement:-
+
+In a normal matrix, we have to traverse through all the elements to check all the elements.
+
+In this class, we have to traverse through only the elements in the upper triangle. 
+
+This improves the efficiency since the no. of iterations to check the minimum element value are less.
+
+***********************************************************************************************************/
+
+//Function to return the minimum coefficient in the matrix
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::maxCoeff()
+{
+
+  //This variable stores the minimum of the elements of matrix
+  _Scalar store_min=mat[0];  
+
+  for(int i=1;i<mat.size();i++)
+  {
+  	if(mat[i]<store_min)
+  	{
+  		store_min=mat[i];
+  	}
+  }
+
+  return store_min;
+}
 /*******************************************************************************************************
 						NUMBER OF ELEMENTS STORED IN THE CLASSICAL PACKED FORMAT
 ********************************************************************************************************/

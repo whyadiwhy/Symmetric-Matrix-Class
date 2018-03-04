@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <Eigen/Eigen>
 #include "SymMat.h"
+
 int main()
 {
 	//Creating a matrix from Eigen::Matrix
