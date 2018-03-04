@@ -66,6 +66,12 @@ public:
 	//Trace of matrix
 	_Scalar trace();
 
+	//Sum of the elements
+	_Scalar sum();
+
+	//No.of elements stored in the classical packed format
+	int elemstored();
+
 	//Overloading the funtion call operator
 	_Scalar& operator()(int,int);
 
@@ -255,10 +261,63 @@ _Scalar SymMat<_Scalar>::trace()
   return store_trace;
 }
 
+/**********************************************************************************************************
+						SUM OF THE ELEMENTS OF MATRIX
+
+Efficiency improvement:-
+
+In a normal matrix, we have to traverse through all the elements to calculate the sum,
+However here, the elements in upper triangle except the diagonal elements are same in the lower half, 
+So we have to only calculate the sum of upper triangel except the diagonal elements and make it twice 
+and then add it to the sum of diagonal elements.
+
+***********************************************************************************************************/
+
+//Sum function to return trace of matrix
+template<typename _Scalar>
+_Scalar SymMat<_Scalar>::sum()
+{
+
+  //This variable stores the sum of the elements of matrix
+  _Scalar store_sum=0;  
+
+  for(int i=0;i<order;i++)
+  {
+  	store_trace += mat[index(i,i)];
+  }
+
+  for(int i=0;i<mat.size();i++)
+  {
+  	store_sum+=mat[i];
+  }
+  store_sum-=store_trace;
+  store_sum*=2;
+  store_sum+=store_trace
+
+  return store_sum;
+}
+
+
+
+/*******************************************************************************************************
+						NUMBER OF ELEMENTS STORED IN THE CLASSICAL PACKED FORMAT
+********************************************************************************************************/
+//Function to return the number of matrix elements stored in the classical packed format 
+template<typename _Scalar>
+int SymMat<_Scalar>::elemstored()
+{
+  return mat.size();
+}
+
+
 
 /***********************************************************************************************************
 						ADDITION
 					---------------	
+Efficiency improvement:-
+In addition between symmetric matrices, we only have to add the elements of upper triangle to get
+
+
 There is function overloading for the following:
 1)Both belongs to SymMat
 2)First belongs to SymMat and other to Eigen::Matrix
