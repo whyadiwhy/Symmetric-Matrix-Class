@@ -26,7 +26,7 @@ then run the command ``./testcases`` , it will execute the file and produce the 
 After that type:- ``./testcases`` to execute the output file and produce the output
 
 
-## **How program works:-**
+## **_How program works:_**
 
 1)*The SymMatrix class stores only the lower triangle in a vector in row major order.
 Then to calculate the position of element in vector, sum of arithmetic series is used, since elements grow by one in the lower triangle.*
