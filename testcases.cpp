@@ -66,7 +66,14 @@ int main()
 
 	//Getting an element of matrix through accessors 
 	std::cout<<"\nElement at (1,0) is: "<<S1(1,0)<<std::endl;
-	std::cout<<"\nElement at (0,1) is: "<<S1(0,1)<<std::endl;
+	std::cout<<"Element at (0,1) is: "<<S1(0,1)<<std::endl;
+	std::cout<<"Trace of the matrix is:"<<S1.trace()<<std::endl;
+	std::cout<<"Sum of all elements:"<<S1.sum()<<std::endl;
+	std::cout<<"Mean of all elements:"<<S1.mean()<<std::endl;
+	std::cout<<"Products of all elements:"<<S1.prod()<<std::endl;
+	std::cout<<"Products of diagonal elements:"<<S1.diagprod()<<std::endl;
+	std::cout<<"Max coeff of all elements:"<<S1.maxCoeff()<<std::endl;
+	std::cout<<"Min coeff of all elements:"<<S1.minCoeff()<<std::endl;
 
 	//Creating matrix of SymMat class
 	SymMat<float> S2(3);
@@ -154,6 +161,12 @@ int main()
 	}
 
 	std::cout<<std::endl;
+
+
+
+
+
+
 
 /************************************************************************
 						RAISING AN ERROR

@@ -86,6 +86,9 @@ public:
 	//Product of the diagonal elements
 	_Scalar diagprod();
 
+	//Product of the elements of the matrix
+	_Scalar prod();
+
 	//Transpose function
 	//SymMat transpose();
 
@@ -292,7 +295,7 @@ _Scalar SymMat<_Scalar>::diagprod()
 
   for(int i=0;i<order;i++)
   {
-  	store_trace *= mat[index(i,i)];
+  	store_diag_prod *= mat[index(i,i)];
   }
   return store_diag_prod;
 }
@@ -328,7 +331,7 @@ _Scalar SymMat<_Scalar>::sum()
   }
   store_sum-=store_trace;
   store_sum*=2;
-  store_sum+=store_trace
+  store_sum+=store_trace;
 
   return store_sum;
 }
@@ -363,7 +366,7 @@ _Scalar SymMat<_Scalar>::prod()
   store_prod*=store_prod;
   store_prod*=store_diag_prod;
 
-  return store_diag_prod;
+  return store_prod;
 }
  
  
@@ -447,7 +450,7 @@ This improves the efficiency since the no. of iterations to check the minimum el
 
 //Function to return the minimum coefficient in the matrix
 template<typename _Scalar>
-_Scalar SymMat<_Scalar>::maxCoeff()
+_Scalar SymMat<_Scalar>::minCoeff()
 {
 
   //This variable stores the minimum of the elements of matrix
