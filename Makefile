@@ -10,5 +10,8 @@ CXXFLAGS=
 testcases.o: testcases.cpp
 	$(CXX) $(CXXFLAGS) -std=c++11 testcases.cpp -o testcases
 
+calcspace.o: calcspace.cpp
+	$(CXX) $(CXXFLAGS) calcspace.cpp -o calcspace
+
 #This compiles all the files
-all: testcases.o 
+all: testcases.o calcspace.o
