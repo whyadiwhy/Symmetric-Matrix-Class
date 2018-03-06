@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+//This program calculates how much space will be saved if SymMat class is used to 
+//create the matrix.
+//Options are for order, size of the data elements, 
+//and no. of such matrices
+
+
+#include <iostream>
 using namespace std;
 
 int main()
